@@ -10,6 +10,9 @@ const authRouter = Router();
 
 authRouter.post("/register",authController.register);
 
+// GET /api/auth/get-me
+authRouter.post("/register",authController.getMe)
+
 export default authRouter;
 
 //is file mein bus api ko dclare krte hain 
