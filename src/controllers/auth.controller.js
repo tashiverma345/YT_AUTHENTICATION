@@ -22,16 +22,20 @@ export async function register(req,res){
         })
     }
 
-    const hashedPassword = crypto.createHash("sha255").update(password).digest("hex");
+    const hashedPassword = crypto
+    .createHash("sha256")
+    .update(password)
+    .digest("hex");
 
     const user = await userModel.create({
+        
         username,
         email,
         password: hashedPassword
     })
 
     const token = jwt.sign({
-        id:user_id //jo id humein database se mili usko token mein store kra denge
+        id:user._id //jo id humein database se mili usko token mein store kra denge
     },config.JWT_SECRET,
        {
         expiresIn:"1d" //1 day
